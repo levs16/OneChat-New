@@ -11,6 +11,7 @@ import json
 from datetime import datetime
 import logging
 import os
+from redis import Redis
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -18,7 +19,11 @@ app.config['SESSION_TYPE'] = 'filesystem'
 Session(app)
 socketio = SocketIO(app, manage_session=False)
 
-limiter = Limiter(key_func=get_remote_address, app=app)
+redis = Redis()
+limiter = Limiter(
+    key_func=get_remote_address,
+    storage_uri='redis://localhost:6379'
+)
 
 # In-memory storage for rooms, chat history, and users
 rooms = ['default']

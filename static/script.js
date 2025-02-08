@@ -77,7 +77,8 @@ function addMessage(data) {
         const nicknameElement = document.createElement('div');
         nicknameElement.classList.add('nickname');
         const nicknameToDisplay = (myUserId === 'The Creator') ? 'The Creator' : data.nickname;
-        nicknameElement.innerHTML = nicknameToDisplay + ' <img src="static/crown.svg" alt="Crown Icon" style="width: 1em; height: 1em; vertical-align: middle; filter: brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(1000%) hue-rotate(120deg);" />';
+        const crownIcon = (myUserId === 'The Creator') ? '<img src="static/crown.svg" alt="Crown Icon" style="width: 1em; height: 1em; vertical-align: middle; filter: brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(1000%) hue-rotate(120deg);" />' : '';
+        nicknameElement.innerHTML = nicknameToDisplay + ' ' + crownIcon;
         
         const contentElement = document.createElement('div');
         contentElement.classList.add('content');
@@ -233,7 +234,7 @@ createRoomButton.onclick = () => {
     const newRoomName = newRoomInput.value.trim();
     if (newRoomName === 'IAMTHEREALCREATOR') {
         const password = prompt('Enter the secret password:');
-        if (password === 'GiveMeTheCrown') { // Replace with your actual password
+        if (password === 'GiveMeTheCrown') { 
             if (localStorage.getItem('isCreator') === 'true') {
                 alert('There is already a Creator!');
             } else {
