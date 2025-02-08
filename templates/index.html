@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onechat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <div class="logo">onechat</div>
+    <div class="chat-layout">
+        <div class="sidebar">
+            <h2>Rooms</h2>
+            <ul id="room-list"></ul>
+            <input type="text" id="new-room-input" placeholder="New room name">
+            <button id="create-room-button">Create Room</button>
+        </div>
+        <div class="chat-container">
+            <div class="chat-header">
+                <p>Your nickname: <span id="user-nickname">{{ nickname }}</span></p>
+                <p id="current-room">Current Room: default</p>
+            </div>
+            <div id="chat-messages" class="chat-messages"></div>
+            <div class="chat-input">
+                <textarea id="message-input" placeholder="Type your message... (use gif(url) to insert GIFs or link(url) to create a clickable link, find out more by clicking the ? button)" rows="3" style="resize: none;"></textarea>
+                <button id="send-button">Send</button>
+                <button id="help-button" style="margin-left: 5px;">?</button>
+            </div>
+        </div>
+    </div>
+    <div class="made-by">Made by levs16</div>
+    <div id="help-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0, 0, 0, 0.8); color: #33ff33; padding: 20px; border-radius: 10px; z-index: 1000;">
+        <h3>Styling Instructions</h3>
+        <p>1. Use <code>italic(text)</code> to make text italic.</p>
+        <p>2. Use <code>red(text)</code> to change text color to red.</p>
+        <p>3. Use <code>blue(text)</code> to change text color to blue.</p>
+        <p>4. Use <code>gif(link)</code> to insert a GIF.</p>
+        <p>5. Use <code>link(url)</code> to create a clickable link.</p>
+        <p>6. Use <code>orange(text)</code> to change text color to orange.</p>
+        <p>7. Use <code>yellow(text)</code> to change text color to yellow.</p>
+        <p>8. Use <code>green(text)</code> to change text color to green.</p>
+        <p>9. Use <code>blue(text)</code> to change text color to blue.</p>
+        <p>10. Use <code>indigo(text)</code> to change text color to indigo.</p>
+        <p>11. Use <code>violet(text)</code> to change text color to violet.</p>
+        <p>12. Use <code>bold(text)</code> to make text bold.</p>
+        <p>13. Use <code>italic(text)</code> to make text italic.</p>
+        <p>14. Use <code>underline(text)</code> to underline text.</p>
+        <button id="close-help-modal" style="padding: 5px 10px; background: #33ff33; color: #000; border: none; font-family: 'Press Start 2P', cursive; font-size: 12px; cursor: pointer; transition: all 0.3s ease;">Close</button>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
