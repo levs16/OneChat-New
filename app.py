@@ -193,4 +193,4 @@ def save_chat_history_to_file():
 load_or_create_chat_history()
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, port=8080)
+    socketio.run(app, debug=True, port=1488, host='0.0.0.0')

@@ -262,3 +262,21 @@ helpButton.onclick = () => {
 document.getElementById('close-help-modal').onclick = () => {
     document.getElementById('help-modal').style.display = 'none';
 };
+
+function setNickname(nickname) {
+    localStorage.setItem('nickname', nickname);
+    document.getElementById('user-nickname').textContent = nickname;
+}
+
+// On page load, check for stored nickname
+window.onload = () => {
+    const storedNickname = localStorage.getItem('nickname');
+    if (storedNickname) {
+        myUserId = storedNickname; // Use the stored nickname
+        document.getElementById('user-nickname').textContent = storedNickname;
+    } else {
+        // Generate a new nickname if none exists
+        const newNickname = generateNickname(); // Assuming you have a function to generate a nickname
+        setNickname(newNickname);
+    }
+};
