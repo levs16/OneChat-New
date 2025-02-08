@@ -135,6 +135,7 @@ def handle_message(data):
         'timestamp': datetime.now().isoformat()
     }
     chat_history[room].append(message_data)
+    print("Current chat history:", chat_history)  # Debugging line
     emit('message', message_data, room=room, include_self=False)  # Don't send to the sender
     save_chat_history_to_file()  # Save chat history after each new message
 
@@ -182,8 +183,11 @@ def load_or_create_chat_history():
         save_chat_history_to_file()
 
 def save_chat_history_to_file():
-    with open(chat_history_file, 'w') as f:
-        json.dump(chat_history, f)
+    try:
+        with open(chat_history_file, 'w') as f:
+            json.dump(chat_history, f)
+    except Exception as e:
+        print(f"Error saving chat history: {e}")
 
 # Load or create chat history on startup
 load_or_create_chat_history()

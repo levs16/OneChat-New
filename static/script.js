@@ -76,8 +76,8 @@ function addMessage(data) {
         
         const nicknameElement = document.createElement('div');
         nicknameElement.classList.add('nickname');
-        const nicknameToDisplay = (myUserId === 'The Creator') ? 'The Creator' : data.nickname;
-        const crownIcon = (myUserId === 'The Creator') ? '<img src="static/crown.svg" alt="Crown Icon" style="width: 1em; height: 1em; vertical-align: middle; filter: brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(1000%) hue-rotate(120deg);" />' : '';
+        const nicknameToDisplay = data.nickname;
+        const crownIcon = '';
         nicknameElement.innerHTML = nicknameToDisplay + ' ' + crownIcon;
         
         const contentElement = document.createElement('div');
@@ -232,30 +232,9 @@ messageInput.oninput = () => {
 
 createRoomButton.onclick = () => {
     const newRoomName = newRoomInput.value.trim();
-    if (newRoomName === 'IAMTHEREALCREATOR') {
-        const password = prompt('Enter the secret password:');
-        if (password === 'GiveMeTheCrown') { 
-            if (localStorage.getItem('isCreator') === 'true') {
-                alert('There is already a Creator!');
-            } else {
-                myUserId = 'The Creator';
-                localStorage.setItem('isCreator', 'true');
-                document.getElementById('user-nickname').innerHTML = 'The Creator <img src="static/crown.svg" alt="Crown Icon" style="width: 20px; height: 20px; vertical-align: middle;" />';
-            }
-        } else {
-            alert('Incorrect password!');
-        }
-    } else {
-        joinRoom(newRoomName);
-    }
+    joinRoom(newRoomName);
     newRoomInput.value = '';
 };
-
-// On page load, check if the user is the creator
-if (localStorage.getItem('isCreator') === 'true') {
-    myUserId = 'The Creator';
-    document.getElementById('user-nickname').innerHTML = 'The Creator <img src="static/crown.svg" alt="Crown Icon" style="width: 20px; height: 20px; vertical-align: middle;" />';
-}
 
 // Custom cursor
 document.addEventListener('mousemove', (e) => {
