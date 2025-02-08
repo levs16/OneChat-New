@@ -145,10 +145,11 @@ function addMessage(data) {
 function sendMessage() {
     const message = messageInput.value.trim();
     if (message) {
+        const nickname = localStorage.getItem('nickname') || 'Anonymous'; // Use stored nickname
         const messageData = { 
             message: message, 
             userId: myUserId, 
-            nickname: document.getElementById('user-nickname').textContent,
+            nickname: nickname,
             room: currentRoom,
             timestamp: new Date().toISOString()
         };
